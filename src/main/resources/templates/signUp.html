@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="navbar::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signup</title>
+</head>
+<body>
+<section>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <h2 class="mb-4 text-center">Registration Form</h2>
+
+                <!-- Message Alert -->
+                <div th:if="${message != null}">
+                    <div th:class="'alert ' + ${message.type}" role="alert">
+                        <span th:text="${message.content}"></span>
+                    </div>
+                </div>
+
+
+
+                <form action="" th:action="@{/do_register}" method="post" th:object="${user}">
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input name="name" type="text" class="form-control" id="name" placeholder="Enter your full name" required th:value="${user.name}">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email address</label>
+                        <input name="email" type="email" class="form-control" id="email" placeholder="Enter your email" required th:value="${user.email}">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input name="password" type="password" class="form-control" id="password" placeholder="Enter a strong password" required>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Short Description</label>
+                        <textarea name="about" th:text="${user.about}" class="form-control" id="description" rows="3" placeholder="Tell us something about yourself"></textarea>
+                    </div>
+
+                    <!--term and condition-->
+                    <div class="form-check mb-3">
+                        <input name="agreement" class="form-check-input" type="checkbox" value="true" id="terms" required>
+                        <label class="form-check-label" for="terms">
+                            I accept the <a href="#">Terms and Conditions</a>
+                        </label>
+                    </div>
+
+
+                    <!-- register and reset buttons-->
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary me-2 flex-fill">Register</button>
+                        <button type="reset" class="btn btn-secondary flex-fill">Reset</button>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="col-sm-3"></div>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
