@@ -6,6 +6,7 @@ import com.amit.SmartcontactManager.repo.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     private UserRepository userRepository;
@@ -64,6 +68,8 @@ public class HomeController {
             // Set user defaults
             user.setRole("ROLE_USER");
             user.setEnabled(true);
+            user.setImageName("default.png");
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
 
             // Save user to database
             userRepository.save(user);
@@ -83,5 +89,11 @@ public class HomeController {
 
             return "redirect:/signup";
         }
+    }
+    // handler for login
+
+    @GetMapping("/signin")
+    public String customLogin(){
+        return "login";
     }
 }

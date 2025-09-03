@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="normal/navbar :: layout(~{::section})">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Contact</title>
+</head>
+
+<body>
+<section class="container mt-5">
+
+    <!-- Card Layout -->
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">➕ Add New Contact</h4>
+        </div>
+
+        <div class="card-body">
+            <!-- Contact Form -->
+            <form th:action="@{/user/process-contact}" th:object="${contact}" method="post"
+                  enctype="multipart/form-data">
+
+                <div class="row">
+                    <!-- First Name -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">First Name</label>
+                        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter first name" required>
+                    </div>
+
+                    <!-- Second Name -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Second Name</label>
+                        <input type="text" th:field="*{secondName}" class="form-control" placeholder="Enter second name">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Work -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Work</label>
+                        <input type="text" th:field="*{work}" class="form-control" placeholder="Enter work/profession">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" th:field="*{email}" class="form-control" placeholder="Enter email address" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Phone -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="text" th:field="*{phone}" class="form-control" placeholder="Enter phone number" required>
+                    </div>
+
+                    <!-- Profile Image -->
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Profile Image</label>
+                        <input type="file" name="profileImage" class="form-control">
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <textarea th:field="*{description}" class="form-control" rows="4"
+                              placeholder="Enter description..."></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success btn-lg">
+                        <i class="bi bi-save"></i> Save Contact
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>
