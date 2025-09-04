@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/navbar::layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${title}">title</title>
+</head>
+<body>
+<section>
+
+    <section class="container mt-5">
+
+        <!-- Page Heading -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-primary">📒 Your Contacts</h2>
+            <a href="/user/add-contact" class="btn btn-success">➕ Add New Contact</a>
+        </div>
+
+        <!-- Contact Table -->
+        <div class="card shadow-lg border-0 rounded-3">
+            <div class="card-body">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Profile</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Work</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="contact, iterStat : ${contacts}">
+                        <th th:text="${iterStat.index + 1}"></th>
+
+                        <!-- Profile Image -->
+                        <td>
+                            <img th:src="@{'/img/' + ${contact.image}}" alt="profile"
+                                 class="rounded-circle" width="50" height="50">
+                        </td>
+
+                        <!-- Name -->
+                        <td th:text="${contact.name + ' ' + contact.secondName}"></td>
+
+                        <!-- Email -->
+                        <td th:text="${contact.email}"></td>
+
+                        <!-- Phone -->
+                        <td th:text="${contact.phone}"></td>
+
+                        <!-- Work -->
+                        <td th:text="${contact.work}"></td>
+
+                        <!-- Action Buttons -->
+                        <td>
+                            <a th:href="@{'/user/contact/' + ${contact.cid}}" class="btn btn-sm btn-primary">👁️ View</a>
+                            <a th:href="@{'/user/delete/' + ${contact.cid}}" class="btn btn-sm btn-danger">🗑️ Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+
+</section>
+</body>
+</html>

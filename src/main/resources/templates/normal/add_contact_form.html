@@ -11,6 +11,21 @@
 <body>
 <section class="container mt-5">
 
+    <div id="alertBox" th:if="${message}" th:class="'alert alert-' + ${alertType}" role="alert">
+        <span th:text="${message}"></span>
+    </div>
+
+    <script>
+        // Auto hide after 3 seconds
+        setTimeout(function () {
+            let alertBox = document.getElementById("alertBox");
+            if (alertBox) {
+                alertBox.style.display = "none";
+            }
+        }, 3000); // 3000 = 3 sec
+    </script>
+
+
     <!-- Card Layout -->
     <div class="card shadow-lg border-0 rounded-3">
         <div class="card-header bg-primary text-white">
@@ -67,7 +82,7 @@
                 <!-- Description -->
                 <div class="mb-3">
                     <label class="form-label">Description</label>
-                    <textarea th:field="*{description}" class="form-control" rows="4"
+                    <textarea id="editor" th:field="*{description}" class="form-control" rows="4"
                               placeholder="Enter description..."></textarea>
                 </div>
 
@@ -80,6 +95,13 @@
             </form>
         </div>
     </div>
+
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
 
 </section>
 </body>
