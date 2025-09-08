@@ -69,7 +69,7 @@
                     <!-- Phone -->
                     <div class="col-md-6 mb-3">
                         <label class="form-label">Phone</label>
-                        <input type="text" th:field="*{phone}" class="form-control" placeholder="Enter phone number" required>
+                        <input type="number" th:field="*{phone}" class="form-control" placeholder="Enter phone number" required>
                     </div>
 
                     <!-- Profile Image -->
@@ -79,12 +79,7 @@
                     </div>
                 </div>
 
-                <!-- Description -->
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea id="editor" th:field="*{description}" class="form-control" rows="4"
-                              placeholder="Enter description..."></textarea>
-                </div>
+
 
                 <!-- Submit Button -->
                 <div class="d-grid">
@@ -96,12 +91,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 
-
-    <script>
-        CKEDITOR.replace('editor');
-    </script>
 
 </section>
 </body>

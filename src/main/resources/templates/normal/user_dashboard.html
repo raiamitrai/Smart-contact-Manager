@@ -6,9 +6,57 @@
     <title th:text="${title}">User Dashboard</title>
 </head>
 <body>
-<section>
+<section class="container mt-4">
 
-<h1>ascsacwd</h1>
+    <!-- Welcome Section -->
+    <div class="text-center mb-5">
+        <h2 class="text-primary">👋 Welcome, <span th:text="${user.name}">User</span>!</h2>
+        <p class="lead">Manage all your contacts easily and efficiently with Smart Contact Manager.</p>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row g-4">
+
+        <!-- Total Contacts Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 text-center">
+                <img src="https://img.icons8.com/color/96/000000/contacts.png" class="card-img-top mx-auto mt-3"
+                     style="width:96px; height:96px;" alt="Contacts">
+                <div class="card-body">
+                    <h5 class="card-title">My Contacts</h5>
+                    <p class="card-text">View and manage all your saved contacts.</p>
+                    <a th:href="@{/user/contacts}" class="btn btn-primary">Go</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Contact Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 text-center">
+                <img src="https://img.icons8.com/color/96/000000/add-user-group-man-man.png" class="card-img-top mx-auto mt-3"
+                     style="width:96px; height:96px;" alt="Add Contact">
+                <div class="card-body">
+                    <h5 class="card-title">Add Contact</h5>
+                    <p class="card-text">Quickly add a new contact to your contact list.</p>
+                    <a th:href="@{/user/add-contact}" class="btn btn-success">Add</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Card -->
+        <div class="col-md-4">
+            <div class="card shadow-lg border-0 text-center">
+                <img src="https://img.icons8.com/color/96/000000/settings.png" class="card-img-top mx-auto mt-3"
+                     style="width:96px; height:96px;" alt="Settings">
+                <div class="card-body">
+                    <h5 class="card-title">Settings</h5>
+                    <p class="card-text">Update your profile and preferences.</p>
+                    <a th:href="@{/user/settings}" class="btn btn-warning text-white">Go</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 
 </section>
 </body>

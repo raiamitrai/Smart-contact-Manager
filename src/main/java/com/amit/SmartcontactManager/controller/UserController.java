@@ -1,7 +1,11 @@
 package com.amit.SmartcontactManager.controller;
 
 import com.amit.SmartcontactManager.entities.Contact;
+import com.amit.SmartcontactManager.repo.ContactRepository;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.ui.Model;
 import com.amit.SmartcontactManager.entities.User;
 import com.amit.SmartcontactManager.repo.UserRepository;
@@ -9,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.nio.file.Files;
@@ -16,6 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.security.Principal;
+import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -23,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ContactRepository contactRepository;
 
     // ye method har request pe chalega
     @ModelAttribute
@@ -62,6 +71,7 @@ public class UserController {
             if(file.isEmpty()){
                 // if the file is empty the try oue message;
                 System.out.println("File is empty");
+                contact.setImage("contact.png");
             }
             else{
                 //upload file
@@ -97,9 +107,45 @@ public class UserController {
 
     // view contact handler
     @GetMapping("/contacts")
-    public String viewContact(){
+    public String viewContact(@RequestParam(defaultValue = "0") int page, Principal principal , Model m){
+        String userName = principal.getName();
+        User user = this.userRepository.getUserByUserName(userName);
+
+        Pageable pageable = PageRequest.of(page, 5); // 5 contacts per page
+
+        Page<Contact> contacts = this.contactRepository.findContactByUser(user.getId() , pageable);
+        m.addAttribute("contacts" , contacts);
+
         return "normal/view_contacts";
     }
+    // delete contact
+    @GetMapping("/delete/{cid}")
+    public String deleteContact(@PathVariable("cid") Integer cid, Principal principal, RedirectAttributes redirectAttributes) {
+        try {
+            Contact contact = contactRepository.findById(cid).orElseThrow(() -> new Exception("Contact not found"));
+
+            // Ensure contact belongs to the logged-in user
+            String userName = principal.getName();
+            User user = userRepository.getUserByUserName(userName);
+
+            if (contact.getUser().getId() == (user.getId())) {
+                contactRepository.delete(contact);
+                redirectAttributes.addFlashAttribute("message", "✅ Contact deleted successfully!");
+                redirectAttributes.addFlashAttribute("alertType", "success");
+            } else {
+                redirectAttributes.addFlashAttribute("message", "❌ You are not authorized to delete this contact.");
+                redirectAttributes.addFlashAttribute("alertType", "danger");
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("message", "❌ Error: " + e.getMessage());
+            redirectAttributes.addFlashAttribute("alertType", "danger");
+        }
+        return "redirect:/user/contacts";
+    }
+
+
+
+
 
 }
 

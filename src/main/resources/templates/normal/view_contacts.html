@@ -38,7 +38,9 @@
                         <!-- Profile Image -->
                         <td>
                             <img th:src="@{'/img/' + ${contact.image}}" alt="profile"
-                                 class="rounded-circle" width="50" height="50">
+                                 style="width:50px; height:50px; object-fit:cover; border-radius:50%;">
+
+
                         </td>
 
                         <!-- Name -->
@@ -55,12 +57,40 @@
 
                         <!-- Action Buttons -->
                         <td>
-                            <a th:href="@{'/user/contact/' + ${contact.cid}}" class="btn btn-sm btn-primary">👁️ View</a>
-                            <a th:href="@{'/user/delete/' + ${contact.cid}}" class="btn btn-sm btn-danger">🗑️ Delete</a>
+                            <a th:href="@{'/user/contact/' + ${contact.cId}}" class="btn btn-sm btn-primary">👁️ View</a>
+
+                            <a th:href="@{'/user/delete/' + ${contact.cId}}" class="btn btn-sm btn-danger">🗑️ Delete</a>
                         </td>
                     </tr>
                     </tbody>
                 </table>
+
+
+                <!-- Pagination Section (view_contacts.html me table ke niche add karo) -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center mt-4">
+
+                        <!-- Previous Button -->
+                        <li class="page-item" th:classappend="${contacts.hasPrevious()} ? '' : 'disabled'">
+                            <a class="page-link" th:href="@{/user/contacts(page=${contacts.number - 1})}">Previous</a>
+                        </li>
+
+                        <!-- Page Numbers -->
+                        <li class="page-item" th:each="i : ${#numbers.sequence(0, contacts.totalPages - 1)}"
+                            th:classappend="${i == contacts.number} ? 'active'">
+                            <a class="page-link" th:href="@{/user/contacts(page=${i})}" th:text="${i + 1}">1</a>
+                        </li>
+
+                        <!-- Next Button -->
+                        <li class="page-item" th:classappend="${contacts.hasNext()} ? '' : 'disabled'">
+                            <a class="page-link" th:href="@{/user/contacts(page=${contacts.number + 1})}">Next</a>
+                        </li>
+
+                    </ul>
+                </nav>
+
+
+
             </div>
         </div>
 
