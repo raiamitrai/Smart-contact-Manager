@@ -34,14 +34,22 @@ public class UserController {
     private ContactRepository contactRepository;
 
     // ye method har request pe chalega
+
     @ModelAttribute
     public void addCommonData(Model model, Principal principal) {
         if (principal != null) {
             String userName = principal.getName();
             User user = userRepository.getUserByUserName(userName);
+
+            // Default image check
+            if (user.getImageName() == null || user.getImageName().isEmpty()) {
+                user.setImageName("default.png"); // static/img/default.png me rakho
+            }
+
             model.addAttribute("user", user);
         }
     }
+
 
     @RequestMapping("/index")
     public String dashboard(Model model) {
@@ -111,9 +119,10 @@ public class UserController {
         String userName = principal.getName();
         User user = this.userRepository.getUserByUserName(userName);
 
-        Pageable pageable = PageRequest.of(page, 5); // 5 contacts per page
+        Pageable pageable = PageRequest.of(page, 10); // 10 contacts per page
 
         Page<Contact> contacts = this.contactRepository.findContactByUser(user.getId() , pageable);
+        m.addAttribute("title" , "contact");
         m.addAttribute("contacts" , contacts);
 
         return "normal/view_contacts";
@@ -144,7 +153,23 @@ public class UserController {
     }
 
 
+    @GetMapping("/profile")
+    public String viewProfile(Model model, Principal principal) {
+        String userName = principal.getName();
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("title", "My Profile");
+        model.addAttribute("user", user);
+        return "normal/profile"; // normal/profile.html
+    }
 
+    @GetMapping("/settings")
+    public String Setting(Model model , Principal principal){
+        String userName = principal.getName();
+        User user = userRepository.getUserByUserName(userName);
+        model.addAttribute("title" , "setting");
+        model.addAttribute("user", user);
+        return "normal/Setting";
+    }
 
 
 }

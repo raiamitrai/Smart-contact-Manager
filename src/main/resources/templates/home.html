@@ -4,58 +4,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title th:text="${title}">Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+        }
+        .hero p {
+            font-size: 1.3rem;
+            margin-top: 1rem;
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.3);
+        }
+        .hero .btn-primary {
+            margin-top: 2rem;
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .hero .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        /* Features Section */
+        .feature-card {
+            border: none;
+            border-radius: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        .feature-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+            border-radius: 1rem;
+            margin-top: 3rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .cta .btn {
+            padding: 0.8rem 2rem;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+        .cta .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        .footer a {
+            color: #f4b400;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<section>
 
-    <section class="bg-primary text-white text-center py-5">
-        <div class="container">
-            <h1 class="display-4">Welcome to <span class="text-dark fw-bold">Smart Contact Manager</span></h1>
-            <p class="lead mt-3">Easily manage all your contacts in one secure place.</p>
-            <a href="#" class="btn btn-light btn-lg mt-4">Get Started</a>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to <span class="text-warning">Smart Contact Manager</span> 👋</h1>
+        <p>Manage all your contacts easily, securely, and efficiently in one place.</p>
+        <a th:href="@{/login}" class="btn btn-primary btn-lg">Get Started</a>
+    </div>
+</section>
 
-    <!-- Features Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary">Secure</h5>
-                            <p class="card-text">Your contacts are stored safely with top-level encryption.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary">Organized</h5>
-                            <p class="card-text">Categorize and search your contacts with ease.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            <h5 class="card-title text-primary">Easy to Use</h5>
-                            <p class="card-text">Simple and clean user interface for a better experience.</p>
-                        </div>
-                    </div>
+
+<!-- Features Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center text-center g-4">
+
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card shadow-sm bg-white h-100 p-4">
+                    <img th:src="@{/img/secure.jpg}" alt="Secure" class="img-fluid mx-auto d-block mb-3" style="max-width: 150px;">
+                    <h5 class="text-primary">Secure</h5>
+                    <p>Your contacts are protected with top-level encryption.</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Call to Action Section -->
-    <section class="text-center py-5">
-        <div class="container">
-            <h2 class="mb-4">Start managing your contacts today!</h2>
-            <a href="#" class="btn btn-primary btn-lg">Create Your Account</a>
-        </div>
-    </section>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card shadow-sm bg-white h-100 p-4">
+                    <img th:src="@{/img/organised.jpg}" alt="Organized" class="img-fluid mx-auto d-block mb-3" style="max-width: 150px;">
+                    <h5 class="text-primary">Organized</h5>
+                    <p>Easily categorize and search all your contacts efficiently.</p>
+                </div>
+            </div>
 
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card shadow-sm bg-white h-100 p-4">
+                    <img th:src="@{/img/easy.png}" alt="Easy to Use" class="img-fluid mx-auto d-block mb-3" style="max-width: 150px;">
+                    <h5 class="text-primary">Easy to Use</h5>
+                    <p>Clean and simple interface for smooth user experience.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </section>
+
+
+<!-- Call To Action Section -->
+<section class="cta">
+    <div class="container">
+        <h2>Start managing your contacts today!</h2>
+        <a th:href="@{/signup}" class="btn btn-dark btn-lg">Create Your Account</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2025 Smart Contact Manager. All rights reserved.</p>
+        <p>Follow us on
+            <a href="#"><i class="bi bi-facebook"></i> Facebook</a> |
+            <a href="#"><i class="bi bi-twitter"></i> Twitter</a> |
+            <a href="#"><i class="bi bi-instagram"></i> Instagram</a>
+        </p>
+    </div>
+</footer>
+
 </body>
 </html>

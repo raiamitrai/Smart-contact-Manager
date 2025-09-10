@@ -38,8 +38,8 @@ public class MyConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/user/**").hasRole("USER")
-                        .requestMatchers("/", "/about", "/signin", "/signup").permitAll()
-                        .requestMatchers("/css/**", "/js/**", "/images/**").permitAll()  // ✅ yeh add karo
+                        .requestMatchers("/", "/about", "/signin", "/signup" , "/do_register").permitAll()
+                        .requestMatchers("/css/**", "/js/**", "/img/**").permitAll()  // ✅ yeh add karo
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

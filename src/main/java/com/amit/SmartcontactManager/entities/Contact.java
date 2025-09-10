@@ -23,8 +23,7 @@ public class Contact {
     private String phone;
     private String image;
 
-    @Column(length = 6000)
-    private String description;
+
 
     @ManyToOne
     private User user;

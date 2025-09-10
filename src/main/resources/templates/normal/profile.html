@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="normal/navbar :: layout(~{::section})">
+<head>
+    <title>Profile</title>
+</head>
+<body>
+
+<section class="py-5" style="background-color: #f8f9fa;">
+    <div th:fragment="content" class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card shadow-lg rounded-4 border-0">
+                    <div class="card-body text-center p-5">
+
+                        <!-- Profile Image -->
+                        <div class="mb-4">
+                            <img th:src="@{'/img/' + ${user.imageName}}"
+                                 class="rounded-circle img-fluid border border-3 border-primary"
+                                 alt="Profile Image" style="width: 150px; height: 150px; object-fit: cover;">
+                        </div>
+
+                        <!-- User Info -->
+                        <h3 class="card-title mb-2" th:text="${user.name}">User Name</h3>
+                        <p class="text-muted mb-4" th:text="${user.email}">user@example.com</p>
+
+                        <!-- Badges for Role -->
+                        <span class="badge bg-primary mb-3" th:text="${user.role}">Role</span>
+
+                        <!-- About Section -->
+                        <h5 class="mt-4">About Me</h5>
+                        <p class="text-secondary text-bold" th:text="${user.about}">
+                            This is a short description about the user.
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="d-flex justify-content-center mt-4">
+                            <a th:href="@{/user/contacts}" class="btn btn-outline-success">
+                                <i class="bi bi-people"></i> My Contacts
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

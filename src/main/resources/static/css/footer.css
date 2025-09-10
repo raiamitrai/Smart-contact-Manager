@@ -1,0 +1,55 @@
+
+/* footer.css */
+
+/* Dark Gradient Background */
+.footer-dark {
+    background: linear-gradient(135deg, #1a1a2e, #162447);
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+
+/* Quick links hover */
+.footer-link {
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.footer-link:hover {
+    color: #ffd700 !important;
+    transform: translateY(-3px);
+}
+
+/* Social icon glow */
+.social-icon {
+    display: inline-block;
+    color: white;
+    font-size: 1.5rem;
+    padding: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 8px rgba(255,255,255,0.1);
+}
+.social-icon:hover {
+    color: #1a1a2e;
+    background: #ffd700;
+    box-shadow: 0 0 20px #ffd700;
+    transform: scale(1.2);
+}
+
+/* Smooth text shadow for readability */
+footer p, footer h2 {
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Responsive tweaks */
+@media (max-width: 576px) {
+    .footer-link {
+        display: block;
+        margin: 5px 0;
+    }
+    .social-icon {
+        padding: 10px;
+        font-size: 1.3rem;
+    }
+}
