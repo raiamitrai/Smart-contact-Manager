@@ -9,47 +9,51 @@
 <body>
 <section class="d-flex align-items-center justify-content-center vh-100">
 
-    <div class="container text-center">
+    <div class="container">
 
-        <!-- Welcome Section -->
-        <div class="mb-5">
-            <h2 class="text-primary">👋 Welcome, <span th:text="${user.name}">User</span>!</h2>
-            <p class="lead">Manage all your contacts easily and efficiently with Smart Contact Manager.</p>
-        </div>
+        <!-- Dashboard Card -->
+        <div class="card shadow-lg border-0 pt-3">
 
-        <!-- Dashboard Cards -->
-        <div class="row g-4 justify-content-center">
-
-            <!-- My Contacts Card -->
-            <div class="col-md-4 col-sm-6">
-                <div class="card shadow-lg border-0 text-center">
-                    <img src="https://img.icons8.com/color/96/000000/contacts.png" class="card-img-top mx-auto mt-3"
-                         style="width:96px; height:96px;" alt="Contacts">
-                    <div class="card-body">
-                        <h5 class="card-title">My Contacts</h5>
-                        <p class="card-text">View and manage all your saved contacts.</p>
-                        <a th:href="@{/user/contacts}" class="btn btn-primary">Go</a>
-                    </div>
-                </div>
+            <!-- Welcome Section -->
+            <div class="text-center mb-3">
+                <h2 class="text-primary">👋 Welcome, <span th:text="${user.name}">User</span>!</h2>
+                <p class="lead">Manage all your contacts easily and efficiently with Smart Contact Manager.</p>
             </div>
 
-            <!-- Add Contact Card -->
-            <div class="col-md-4 col-sm-6">
-                <div class="card shadow-lg border-0 text-center">
-                    <img src="https://img.icons8.com/color/96/000000/add-user-group-man-man.png" class="card-img-top mx-auto mt-3"
-                         style="width:96px; height:96px;" alt="Add Contact">
-                    <div class="card-body">
-                        <h5 class="card-title">Add Contact</h5>
-                        <p class="card-text">Quickly add a new contact to your contact list.</p>
-                        <a th:href="@{/user/add-contact}" class="btn btn-success">Add</a>
+            <!-- Dashboard Cards Row -->
+            <div class="row g-5 justify-content-center">
+
+                <!-- My Contacts Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card shadow-sm border-0 text-center h-100">
+                        <img src="https://img.icons8.com/color/96/000000/contacts.png" class="card-img-top mx-auto mt-3"
+                             style="width:96px; height:96px;" alt="Contacts">
+                        <div class="card-body mb-3">
+                            <h5 class="card-title">My Contacts</h5>
+                            <p class="card-text">View and manage all your saved contacts.</p>
+                            <a th:href="@{/user/contacts}" class="btn btn-primary">Go</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-        </div>
+                <!-- Add Contact Card -->
+                <div class="col-md-4 col-sm-6">
+                    <div class="card shadow-sm border-0 text-center h-100">
+                        <img src="https://img.icons8.com/color/96/000000/add-user-group-man-man.png" class="card-img-top mx-auto mt-3"
+                             style="width:96px; height:96px;" alt="Add Contact">
+                        <div class="card-body mb-3">
+                            <h5 class="card-title">Add Contact</h5>
+                            <p class="card-text">Quickly add a new contact to your contact list.</p>
+                            <a th:href="@{/user/add-contact}" class="btn btn-success">Add</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- row end -->
+
+        </div> <!-- main card end -->
 
     </div>
-
 </section>
 </body>
 </html>

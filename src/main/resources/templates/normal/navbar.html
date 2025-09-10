@@ -23,13 +23,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
 
-                <li class="nav-item">
+                <li class="nav-item m-2">
                     <a class="btn btn-success btn-sm ms-2" th:href="@{/user/profile}">
                         <i class="bi bi-person-circle"></i>
                         <span th:text="${user.name}">User</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item m-2">
                     <a th:href="@{/logout}" class="btn btn-danger btn-sm ms-2">
                         <i class="bi bi-box-arrow-right"></i> Logout
                     </a>
@@ -43,9 +43,8 @@
 <div class="container-fluid">
     <div class="row">
 
-        <!-- Sidebar -->
-        <div class="col-md-3 col-lg-2 bg-dark text-white min-vh-100 p-3">
-            <h5 class="mb-3">📌 Dashboard</h5>
+        <div class="col-md-3 col-lg-2 bg-dark text-white p-3 mt-5" style="height: 50vh;">
+            <h5 class="mb-3">📊 Dashboard</h5>
             <ul class="nav flex-column">
                 <li class="nav-item"><a th:href="@{/user/index}" class="nav-link text-white"><i class="bi bi-house"></i> Home</a></li>
                 <li class="nav-item"><a th:href="@{/user/profile}" class="nav-link text-white"><i class="bi bi-person"></i> Profile</a></li>
@@ -56,8 +55,9 @@
         </div>
 
 
+
         <!-- Main Content -->
-        <div class="col-md-9 col-lg-10 p-4">
+        <div class="col-md-9 col-lg-10 ">
 
             <!-- Dynamic Page Content -->
             <div th:replace="${content}"></div>
@@ -66,11 +66,11 @@
 <!--        footer-->
 
         <!-- Dark Premium Footer Start -->
-        <footer class="footer-dark p-5 text-white mt-5">
+        <footer class="footer-dark p-1 text-white mt-5">
             <div class="container text-center">
 
                 <!-- Logo & Tagline -->
-                <div class="mb-4">
+                <div class="mb-4 pt-4">
                     <h2 class="fw-bold mb-2">Smart Contact Manager</h2>
                     <p class="lead mb-0">Organize, manage, and connect effortlessly with all your contacts.</p>
                 </div>
